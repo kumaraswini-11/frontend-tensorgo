@@ -3,7 +3,7 @@ import axios from "axios";
 import { Header, FeedbackChart } from "../components";
 
 const DisplayFeedbackPage = () => {
-  const [category, setCategory] = useState("Select Category");
+  const [category, setCategory] = useState("");
   const [feedbackList, setFeedbackList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,7 +16,7 @@ const DisplayFeedbackPage = () => {
         const response = await axios.get(
           `${
             import.meta.env.VITE_BACKEND_URL
-          }/api/feedback/category/${category}`
+          }/api/feedback?category=${category}`
         );
         setFeedbackList(response.data.data);
       } catch (error) {
@@ -44,11 +44,16 @@ const DisplayFeedbackPage = () => {
             <div className="text-center text-red-600">{error}</div>
           ) : (
             <>
-              {/* <div className="w-full h-72 mb-6">
-                <FeedbackChart feedbackList={feedbackList} />
-              </div> */}
+              {!category && (
+                <div className="w-full h-72 mb-6">
+                  <FeedbackChart feedbackList={feedbackList} />
+                </div>
+              )}
               <SelectCategory category={category} setCategory={setCategory} />
-              <FeedbackDetails feedbackList={feedbackList} />
+              <FeedbackDetails
+                feedbackList={feedbackList}
+                selectedCategory={category}
+              />
             </>
           )}
         </div>
@@ -68,7 +73,7 @@ const SelectCategory = ({ category, setCategory }) => {
         onChange={(e) => setCategory(e.target.value)}
         className="mt-1 w-auto p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
       >
-        <option value="Select Category">Select Category</option>
+        <option value="">Select Category</option>
         {["Product Features", "Product Pricing", "Product Usability"].map(
           (item, index) => (
             <option key={index} value={item}>
@@ -81,7 +86,7 @@ const SelectCategory = ({ category, setCategory }) => {
   );
 };
 
-const FeedbackDetails = ({ feedbackList, length = 5 }) => {
+const FeedbackDetails = ({ feedbackList, length = 5, selectedCategory }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {feedbackList.map((item, index) => (
@@ -89,6 +94,12 @@ const FeedbackDetails = ({ feedbackList, length = 5 }) => {
           className="bg-orange-100 rounded-md p-4 shadow-md flex flex-col"
           key={index}
         >
+          {!selectedCategory && (
+            <div className="flex items-center mb-2 gap-1">
+              <span className="font-medium text-gray-700">Category:</span>
+              <p className="text-gray-600 break-words">{item.category}</p>
+            </div>
+          )}
           <div className="flex items-center mb-2">
             <span className="font-medium text-gray-700">Rating:</span>
             <div className="ml-2 flex">

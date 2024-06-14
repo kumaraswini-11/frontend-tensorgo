@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Header, FeedbackForm } from "../components";
+import { Header, FeedbackForm, FrillWidget } from "../components";
 
 const SubmitFeedbackPage = () => {
   const [loading, setLoading] = useState(false);
@@ -67,6 +67,8 @@ const SubmitFeedbackPage = () => {
           handleSubmit={handleSubmit}
           loading={loading}
         />
+       
+        <FrillWidget />
       </main>
     </>
   );

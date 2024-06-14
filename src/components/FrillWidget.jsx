@@ -10,7 +10,7 @@ const FrillWidget = () => {
 
     // Add Frill config to window
     window.Frill_Config = window.Frill_Config || [];
-    window.Frill_Config.push({ key: "9a300ff6-1d76-4038-b530-bac9dbbf737f" });
+    window.Frill_Config.push({ key: "c6a5925d-6d18-45a7-a6d7-43c440da1322" });
 
     // Append script to body
     document.body.appendChild(script);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, FeedbackChart, FrillWidget } from "../components";
+import { Header, FeedbackChart } from "../components";
 
 const DisplayFeedbackPage = () => {
   const [category, setCategory] = useState("Select Category");
@@ -53,8 +53,6 @@ const DisplayFeedbackPage = () => {
           )}
         </div>
       </main>
-
-      <FrillWidget />
     </>
   );
 };

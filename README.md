@@ -35,23 +35,3 @@ cd frontend
 npm install
 npm start
 ```
-
----
-
-```
-src/
-|-- components/
-|   |-- GoogleLoginButton.js
-|   |-- ProtectedRoute.js
-|
-|-- contexts/
-|   |-- AuthContext.js
-|
-|-- pages/
-|   |-- LoginPage.js
-|   |-- SubmitFeedbackPage.js
-|   |-- DisplayFeedbackPage.js
-|
-|-- AppRoutes.js
-|-- App.js
-```
